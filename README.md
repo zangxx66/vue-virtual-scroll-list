@@ -1,9 +1,7 @@
 
 ## vue-virtual-scroll-list
 
->Base on Fork tangbc/vue-virtual-scroll-list
-
->
+>Base on [tangbc/vue-virtual-scroll-list](https://tangbc.github.io/vue-virtual-scroll-list)
 
 > If you are looking for a vue component which support big data list and high scroll performance, you are in the right place.
 
@@ -34,11 +32,7 @@
 
 ## Simple usage
 
-#### Using by npm:
-
-```
-npm install vue-virtual-scroll-list --save
-```
+#### Using :
 
 ```vue
 <template>
@@ -62,32 +56,6 @@ npm install vue-virtual-scroll-list --save
         components: { item, 'virtual-list': virtualList }
     }
 </script>
-```
-
-
-#### Using by script include:
-
-```html
-<script src="https://unpkg.com/vue@2.3.0/dist/vue.js"></script>
-<script src="https://tangbc.github.io/vue-virtual-scroll-list/index.js"></script>
-
-<div id="app">
-    <virtual-list :size="40" :remain="8" wtag="ul">
-        <li class="item" v-for="(udf, index) of items" :key="index">Item: # {{ index }}</li>
-    </virtual-list>
-</div>
-```
-
-```javascript
-// Global name as `VirtualScrollList`
-Vue.component('virtual-list', VirtualScrollList)
-
-new Vue({
-    el: '#app',
-    data: {
-        items: new Array(100000)
-    }
-})
 ```
 
 
@@ -117,6 +85,7 @@ new Vue({
 | tobottom | Function | * | Called when virtual-list is scrolled to bottom, no param. |
 | onscroll | Function | * | Called when virtual-list is scrolling, with param: [`(event, data)`](https://github.com/tangbc/vue-virtual-scroll-list/releases/tag/v1.1.7). |
 | variable | Function or Boolean | * | For using virtual-list with variable height mode. If assign `Function`, this prop is a variable height getter function which is called with param: `(index)` when each item is ready to be calculated. If assign `Boolean`, virtual-list will get each item variable height by it's inline style height automatic. |
+height|Number|*|Height of the scrolling area.Default vaule is `size` * `remain`.|
 
 ### About variable height
 
@@ -133,16 +102,26 @@ If you are using `variable` assign by `Boolean`, **do not** set inline style hei
 </template>
 ```
 
+##About safari
+
+Add the following CSS to the parent element of the component.
+```css
+
+.div{
+  position: absolute;
+  width: 100%;
+  transform: translate3d(0px, 0px, 0px);
+  transition: transform ease-in-out 0.38s, visibility 0.38s,
+    -webkit-transform ease-in-out 0.38s;
+}
+
+```
 
 ## Contributions
 
 Welcome to improve vue-virtual-scroll-list with any issue, pull request or code review.
 
-
-## Changelogs
-
-Maintain and update occasionally, for changes see [release](https://github.com/tangbc/vue-virtual-scroll-list/releases).
-
 ## License
 
 [MIT License](https://github.com/tangbc/vue-virtual-scroll-list/blob/master/LICENSE)
+
